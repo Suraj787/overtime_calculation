@@ -7,18 +7,22 @@
  "field_order": [
   "date",
   "holiday_list",
+  "employee",
+  "salary_component",
+  "department",
+  "column_break_6",
+  "amended_from",
+  "time_and_calculation_section",
   "checkin",
   "checkout",
-  "total_working_tme",
+  "overtime_period",
+  "standard_working_period",
+  "overtime_cost",
+  "column_break_5",
   "shift",
   "shift_start_time",
   "shift_end_time",
-  "column_break_5",
-  "employee",
-  "department",
-  "standard_working_period",
-  "overtime_period",
-  "amended_from"
+  "actual_working_time"
  ],
  "fields": [
   {
@@ -41,11 +45,6 @@
    "fieldname": "checkout",
    "fieldtype": "Time",
    "label": "Checkout"
-  },
-  {
-   "fieldname": "total_working_tme",
-   "fieldtype": "Data",
-   "label": "Total Working Tme"
   },
   {
    "fieldname": "shift",
@@ -97,10 +96,35 @@
    "options": "Overtime Calculation",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "salary_component",
+   "fieldtype": "Link",
+   "label": "Salary Component",
+   "options": "Salary Component"
+  },
+  {
+   "fieldname": "time_and_calculation_section",
+   "fieldtype": "Section Break",
+   "label": "Time and Calculation"
+  },
+  {
+   "fieldname": "overtime_cost",
+   "fieldtype": "Currency",
+   "label": "Overtime Cost"
+  },
+  {
+   "fieldname": "actual_working_time",
+   "fieldtype": "Time",
+   "label": "Actual Working Time"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
   }
  ],
  "is_submittable": 1,
- "modified": "2020-06-19 21:13:27.750847",
+ "modified": "2020-06-21 09:12:55.798361",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Calculation",
