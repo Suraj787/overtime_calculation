@@ -1,0 +1,43 @@
+{
+ "creation": "2020-06-21 14:42:42.734150",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "overtime_detail",
+  "date",
+  "overtime"
+ ],
+ "fields": [
+  {
+   "fieldname": "overtime_detail",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Overtime Detail",
+   "options": "Overtime Calculation"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "fieldname": "overtime",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Overtime "
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-06-21 14:43:11.078780",
+ "modified_by": "Administrator",
+ "module": "Overtime Calculation",
+ "name": "Daywise Overtime",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
