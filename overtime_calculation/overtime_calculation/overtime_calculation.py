@@ -9,9 +9,9 @@ def execute():
 		holidays=[]
 		for hl in frappe.get_all('Holiday',filters={'parent':emp.get('holiday_list')},fields=['holiday_date']):
 			holidays.append(hl.get('holiday_date'))
-			
+
 		# date=add_days(datetime.date.today(),-103)
-		date=datetime.date.today()
+		date=add_days(datetime.date.today(),-1)
 		ch_in_detail={}
 		ch_out_detail={}
 
