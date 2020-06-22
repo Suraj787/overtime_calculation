@@ -5,14 +5,12 @@ import datetime
 
 def execute():
 	for emp in frappe.get_all('Employee',fields=['name','default_shift','holiday_list','department']):
-		shift=frappe.db.get_value('Shift Assignment',{'employee':emp.name},'shift_type')
+		shift_assignment=frappe.db.get_value('Shift Assignment',{'employee':emp.name},'shift_type')
 		holidays=[]
 		for hl in frappe.get_all('Holiday',filters={'parent':emp.get('holiday_list')},fields=['holiday_date']):
 			holidays.append(hl.get('holiday_date'))
-		if not shift:
-			shift=emp.get('default_shift')
-
-		# date=add_days(datetime.date.today(),-16)
+			
+		# date=add_days(datetime.date.today(),-103)
 		date=datetime.date.today()
 		ch_in_detail={}
 		ch_out_detail={}
@@ -21,7 +19,7 @@ def execute():
 			ch_in_detail.update(ch_in)
 		for ch_out in frappe.db.sql("""select employee,time,log_type,shift from `tabEmployee Checkin` where employee='{0}' and log_type='OUT' and date(time)='{1}' order by time desc limit 1""".format(emp.name,date),as_dict=1):
 			ch_out_detail.update(ch_out)
-
+		shift=ch_in_detail.get('shift') or ch_out_detail.get('shift') or shift_assignment or emp.default_shift
 		if ch_in_detail and ch_out_detail and shift:
 			start,end=frappe.db.get_value('Shift Type',shift,['start_time','end_time'])
 			actual_working_hr=ch_out_detail.get('time')-ch_in_detail.get('time')
