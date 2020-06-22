@@ -86,7 +86,17 @@ app_license = "MIT"
 # 		"on_trash": "method"
 #	}
 # }
-
+doc_events = {
+	"Additional Salary": {
+		"validate":["overtime_calculation.overtime_calculation.additional_salary.update_total"],
+					},
+}
+scheduler_events = {
+	"daily": [
+		"overtime_calculation.overtime_calculation.overtime_calculation.execute",
+		"overtime_calculation.overtime_calculation.additional_salary.execute",
+	]
+}
 # Scheduled Tasks
 # ---------------
 
