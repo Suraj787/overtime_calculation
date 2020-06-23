@@ -1,58 +1,52 @@
 from __future__ import unicode_literals
 from frappe.utils.data import nowdate, getdate,add_days
 import frappe
-import datetime
 
-def execute():
-	for emp in frappe.get_all('Employee',fields=['name','default_shift','holiday_list','department']):
-		shift_assignment=frappe.db.get_value('Shift Assignment',{'employee':emp.name},'shift_type')
-		holidays=[]
-		for hl in frappe.get_all('Holiday',filters={'parent':emp.get('holiday_list')},fields=['holiday_date']):
-			holidays.append(hl.get('holiday_date'))
-
-		# date=add_days(datetime.date.today(),-103)
-		date=add_days(datetime.date.today(),-1)
-		ch_in_detail={}
-		ch_out_detail={}
-
-		for ch_in in frappe.db.sql("""select employee,time,log_type,shift from `tabEmployee Checkin` where employee='{0}' and log_type='IN' and date(time)='{1}' order by time limit 1""".format(emp.name,date),as_dict=1):
-			ch_in_detail.update(ch_in)
-		for ch_out in frappe.db.sql("""select employee,time,log_type,shift from `tabEmployee Checkin` where employee='{0}' and log_type='OUT' and date(time)='{1}' order by time desc limit 1""".format(emp.name,date),as_dict=1):
-			ch_out_detail.update(ch_out)
-		shift=ch_in_detail.get('shift') or ch_out_detail.get('shift') or shift_assignment or emp.default_shift
-		if ch_in_detail and ch_out_detail and shift:
-			start,end=frappe.db.get_value('Shift Type',shift,['start_time','end_time'])
-			actual_working_hr=ch_out_detail.get('time')-ch_in_detail.get('time')
-			standard_working_hr=end-start
-			duration=(actual_working_hr-standard_working_hr)
-			seconds = duration.total_seconds()
-			hours = seconds / 3600
-			if hours>=float(1):
-				salary_component='OT 1.5 Amt'
-				sc=1.5
-				if date in holidays:
-					salary_component='OT 2 Amt'
-					sc=2
-
-				if standard_working_hr < actual_working_hr :
-					oc=frappe.new_doc("Overtime Calculation")
-					oc.date=date
-					oc.holiday_list=emp.get('holiday_list')
-					oc.employee=emp.name
-					oc.salary_component=salary_component
-					oc.department=emp.get('department')
-					oc.shift=shift
-					oc.checkin=ch_in_detail.get('time').time()
-					oc.checkout=ch_out_detail.get('time').time()
-					oc.shift_start_time=start
-					oc.shift_end_time=end
-					oc.overtime_period=((actual_working_hr-standard_working_hr))
-					oc.actual_working_time=actual_working_hr
-					oc.standard_working_period=standard_working_hr
-					oc.overtime_cost=2*sc*((actual_working_hr-standard_working_hr).seconds/60)*1.666
-					oc.insert()
-				
-				
-
-
-				
+def execute(doc,method):
+		if doc.log_type=='OUT':
+			from datetime import datetime
+			checkout=datetime.strptime(doc.time, "%Y-%m-%d %H:%M:%S")
+			checkin=''
+			if doc.shift=='Daytime':
+				for ch_in in frappe.db.sql("""select time from `tabEmployee Checkin` where employee='{0}' and log_type='IN' and date(time)='{1}' and shift='{2}' order by time limit 1""".format(doc.employee,getdate(checkout),doc.shift),as_dict=1):
+					checkin=ch_in.get('time')
+			if doc.shift=='Night Shift':
+				checkout=doc.time
+				for ch_in in frappe.db.sql("""select time from `tabEmployee Checkin` where employee='{0}' and log_type='IN' and date(time)='{1}' and shift='{2}' order by time limit 1""".format(doc.employee,getdate(add_days(checkout,-1)),doc.shift),as_dict=1):
+					checkin=ch_in.get('time')
+			if checkout and checkin and doc.shift:
+				start,end=frappe.db.get_value('Shift Type',doc.shift,['start_time','end_time'])
+				actual_working_hr=checkout-checkin
+				standard_working_hr=end-start
+				duration=(actual_working_hr-standard_working_hr)
+				seconds = duration.total_seconds()
+				hours = seconds / 3600
+				if hours>=float(1):
+					holidays=[]
+					holiday_list,department=frappe.db.get_value('Employee',doc.employee,['holiday_list','department'])
+					for hl in frappe.get_all('Holiday',filters={'parent':holiday_list},fields=['holiday_date']):
+						holidays.append(hl.get('holiday_date'))
+					salary_component='OT 1.5 Amt'
+					sc=1.5
+					import datetime
+					if datetime.date.today() in holidays:
+						salary_component='OT 2 Amt'
+						sc=2
+					if standard_working_hr < actual_working_hr :
+						oc=frappe.new_doc("Overtime Calculation")
+						oc.date=datetime.date.today()
+						oc.holiday_list=holiday_list
+						oc.employee=doc.employee
+						oc.salary_component=salary_component
+						oc.department=department
+						oc.shift=doc.shift
+						oc.checkin=checkin.time()
+						oc.checkout=checkout.time()
+						oc.shift_start_time=start
+						oc.shift_end_time=end
+						oc.overtime_period=duration
+						oc.actual_working_time=actual_working_hr
+						oc.standard_working_period=standard_working_hr
+						oc.overtime_cost=2*sc*((duration).seconds/60)*1.666
+						oc.insert()
+						oc.submit()
