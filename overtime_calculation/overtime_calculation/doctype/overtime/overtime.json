@@ -10,8 +10,8 @@
   "supervisor_name",
   "department",
   "designation",
-  "hours",
   "column_break_3",
+  "hours",
   "from_time",
   "to_time",
   "description"
@@ -26,7 +26,9 @@
   {
    "fieldname": "hours",
    "fieldtype": "Data",
-   "label": "Hours"
+   "in_list_view": 1,
+   "label": "Hours",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_3",
@@ -45,7 +47,9 @@
   {
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
   },
   {
    "fieldname": "description",
@@ -55,8 +59,10 @@
   {
    "fieldname": "supervisor",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Supervisor",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "supervisor_name",
@@ -76,7 +82,7 @@
    "options": "Designation"
   }
  ],
- "modified": "2020-06-27 19:04:17.990522",
+ "modified": "2020-06-27 19:14:56.926871",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime",

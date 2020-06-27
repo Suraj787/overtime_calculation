@@ -6,6 +6,7 @@
  "field_order": [
   "date",
   "overtime",
+  "overtime_date",
   "supervisor",
   "supervisor_name",
   "column_break_5",
@@ -18,13 +19,16 @@
   {
    "fieldname": "date",
    "fieldtype": "Date",
-   "label": "Date"
+   "label": "Application Date",
+   "reqd": 1
   },
   {
    "fieldname": "overtime",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Overtime",
-   "options": "Overtime"
+   "options": "Overtime",
+   "reqd": 1
   },
   {
    "fieldname": "supervisor",
@@ -62,9 +66,14 @@
    "fieldtype": "Link",
    "label": "Designation",
    "options": "Designation"
+  },
+  {
+   "fieldname": "overtime_date",
+   "fieldtype": "Date",
+   "label": "Overtime Date"
   }
  ],
- "modified": "2020-06-27 19:05:12.580725",
+ "modified": "2020-06-27 19:16:26.804528",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Application",
