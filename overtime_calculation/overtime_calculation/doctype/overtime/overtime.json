@@ -36,12 +36,12 @@
   },
   {
    "fieldname": "from_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "From Time"
   },
   {
    "fieldname": "to_time",
-   "fieldtype": "Data",
+   "fieldtype": "Time",
    "label": "To Time"
   },
   {
@@ -82,7 +82,7 @@
    "options": "Designation"
   }
  ],
- "modified": "2020-06-27 19:14:56.926871",
+ "modified": "2020-06-27 19:25:56.246995",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime",

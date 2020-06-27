@@ -7,6 +7,8 @@
   "date",
   "overtime",
   "overtime_date",
+  "from_time",
+  "to_time",
   "supervisor",
   "supervisor_name",
   "column_break_5",
@@ -71,9 +73,19 @@
    "fieldname": "overtime_date",
    "fieldtype": "Date",
    "label": "Overtime Date"
+  },
+  {
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "label": "From Time"
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "label": "To Time"
   }
  ],
- "modified": "2020-06-27 19:16:26.804528",
+ "modified": "2020-06-27 19:25:41.907547",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Application",
