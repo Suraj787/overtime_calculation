@@ -4,18 +4,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "overtime_detail",
+  "overtime_application",
   "date",
   "overtime"
  ],
  "fields": [
-  {
-   "fieldname": "overtime_detail",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Overtime Detail",
-   "options": "Overtime Calculation"
-  },
   {
    "fieldname": "date",
    "fieldtype": "Date",
@@ -27,10 +20,16 @@
    "fieldtype": "Time",
    "in_list_view": 1,
    "label": "Overtime "
+  },
+  {
+   "fieldname": "overtime_application",
+   "fieldtype": "Link",
+   "label": "Overtime Application",
+   "options": "Overtime Application"
   }
  ],
  "istable": 1,
- "modified": "2020-06-21 14:43:11.078780",
+ "modified": "2020-06-27 19:08:53.533351",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Daywise Overtime",

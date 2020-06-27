@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 # import frappe
 from frappe.model.document import Document
 
-class OvertimeCalculation(Document):
+class OvertimeApplication(Document):
 	pass
