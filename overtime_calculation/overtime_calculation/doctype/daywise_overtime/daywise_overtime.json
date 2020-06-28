@@ -24,12 +24,13 @@
   {
    "fieldname": "overtime_application",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Overtime Application",
    "options": "Overtime Application"
   }
  ],
  "istable": 1,
- "modified": "2020-06-27 19:08:53.533351",
+ "modified": "2020-06-28 13:53:22.195471",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Daywise Overtime",

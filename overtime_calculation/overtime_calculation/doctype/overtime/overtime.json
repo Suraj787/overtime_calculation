@@ -1,4 +1,5 @@
 {
+ "autoname": "OVT.-.#####",
  "creation": "2020-06-27 18:37:18.974172",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -82,7 +83,7 @@
    "options": "Designation"
   }
  ],
- "modified": "2020-06-27 19:25:56.246995",
+ "modified": "2020-06-28 13:41:44.113885",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime",

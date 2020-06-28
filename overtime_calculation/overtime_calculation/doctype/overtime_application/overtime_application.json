@@ -1,4 +1,5 @@
 {
+ "autoname": "OT.-.APL.-.####",
  "creation": "2020-06-27 19:03:07.074340",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -85,7 +86,7 @@
    "label": "To Time"
   }
  ],
- "modified": "2020-06-27 19:25:41.907547",
+ "modified": "2020-06-28 13:43:03.626407",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Application",
