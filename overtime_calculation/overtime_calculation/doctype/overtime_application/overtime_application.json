@@ -50,8 +50,9 @@
   },
   {
    "fieldname": "employee",
-   "fieldtype": "Data",
-   "label": "Employee"
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
   },
   {
    "fieldname": "employee_name",
@@ -86,7 +87,7 @@
    "label": "To Time"
   }
  ],
- "modified": "2020-06-28 13:43:03.626407",
+ "modified": "2020-06-28 23:00:54.084390",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Application",
