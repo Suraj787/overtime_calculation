@@ -8,15 +8,18 @@
   "date",
   "overtime",
   "overtime_date",
+  "hours",
   "from_time",
   "to_time",
   "supervisor",
   "supervisor_name",
+  "description",
   "column_break_5",
   "employee",
   "employee_name",
   "department",
-  "designation"
+  "designation",
+  "amended_from"
  ],
  "fields": [
   {
@@ -37,12 +40,14 @@
    "fieldname": "supervisor",
    "fieldtype": "Link",
    "label": "Supervisor",
-   "options": "Employee"
+   "options": "Employee",
+   "read_only": 1
   },
   {
    "fieldname": "supervisor_name",
    "fieldtype": "Data",
-   "label": "Supervisor Name"
+   "label": "Supervisor Name",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5",
@@ -57,19 +62,22 @@
   {
    "fieldname": "employee_name",
    "fieldtype": "Data",
-   "label": "Employee Name"
+   "label": "Employee Name",
+   "read_only": 1
   },
   {
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "read_only": 1
   },
   {
    "fieldname": "designation",
    "fieldtype": "Link",
    "label": "Designation",
-   "options": "Designation"
+   "options": "Designation",
+   "read_only": 1
   },
   {
    "fieldname": "overtime_date",
@@ -79,15 +87,39 @@
   {
    "fieldname": "from_time",
    "fieldtype": "Time",
-   "label": "From Time"
+   "label": "From Time",
+   "read_only": 1
   },
   {
    "fieldname": "to_time",
    "fieldtype": "Time",
-   "label": "To Time"
+   "label": "To Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hours",
+   "fieldtype": "Float",
+   "label": "Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Overtime Application",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
- "modified": "2020-06-28 23:00:54.084390",
+ "is_submittable": 1,
+ "modified": "2020-06-30 15:44:43.494634",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime Application",
@@ -103,6 +135,40 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

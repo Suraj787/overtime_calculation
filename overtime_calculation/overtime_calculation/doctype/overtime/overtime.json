@@ -15,7 +15,8 @@
   "hours",
   "from_time",
   "to_time",
-  "description"
+  "description",
+  "amended_from"
  ],
  "fields": [
   {
@@ -68,22 +69,35 @@
   {
    "fieldname": "supervisor_name",
    "fieldtype": "Data",
-   "label": "Supervisor Name"
+   "label": "Supervisor Name",
+   "read_only": 1
   },
   {
    "fieldname": "department",
    "fieldtype": "Link",
    "label": "Department",
-   "options": "Department"
+   "options": "Department",
+   "read_only": 1
   },
   {
    "fieldname": "designation",
    "fieldtype": "Link",
    "label": "Designation",
-   "options": "Designation"
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Overtime",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
- "modified": "2020-06-28 13:41:44.113885",
+ "is_submittable": 1,
+ "modified": "2020-06-30 15:47:43.592546",
  "modified_by": "Administrator",
  "module": "Overtime Calculation",
  "name": "Overtime",
@@ -99,6 +113,33 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
