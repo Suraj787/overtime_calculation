@@ -5,7 +5,7 @@ import datetime
 import dateutil.relativedelta
 
 def execute():
-	if datetime.date.today()==datetime.date.today().replace(day=21):
+	if datetime.date.today()==datetime.date.today().replace(day=1):
 		for emp in frappe.get_all('Employee'):
 			amount1=0
 			amount2=0
