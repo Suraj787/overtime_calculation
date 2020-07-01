@@ -24,7 +24,6 @@ app_license = "MIT"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
-
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -87,11 +86,16 @@ app_license = "MIT"
 #	}
 # }
 # 
-scheduler_events = {
-	"daily": [
-		"overtime_calculation.overtime_calculation.additional_salary.execute",
-	]
+doc_events = {
+	"Overtime Application": {
+		"on_submit":"overtime_calculation.overtime_calculation.additional_salary.execute"
+	},
 }
+# scheduler_events = {
+# 	"daily": [
+# 		"overtime_calculation.overtime_calculation.additional_salary.execute",
+# 	]
+# }
 # Scheduled Tasks
 # ---------------
 
