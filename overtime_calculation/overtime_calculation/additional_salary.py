@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from frappe.utils.data import nowdate, getdate,add_days,add_months
 import frappe
-import datetime
 import dateutil.relativedelta
 
 def execute(doc,method):
@@ -13,8 +12,9 @@ def execute(doc,method):
 	sc2_row=[]
 	holidays=[]
 	holiday_list,department,rate=frappe.db.get_value('Employee',doc.employee,['holiday_list','department','hourly_overtime_rate_'])
+	from datetime import datetime
 	for hl in frappe.get_all('Holiday',filters={'parent':holiday_list},fields=['holiday_date']):
-		holidays.append(hl.get('holiday_date'))
+		holidays.append(hl.get('holiday_date').strftime("%Y-%m-%d"))
 	overtime_hr=frappe.db.get_value('Overtime',{'name':doc.get('overtime')},'hours')
 	salary_component='OT 1.5 Amt'
 	sc=1.5
@@ -43,7 +43,7 @@ def execute(doc,method):
 		as1.employee=doc.employee
 		as1.salary_component='OT 1.5 Amt'
 		as1.amount=amount1
-		as1.payroll_date=datetime.date.today()
+		as1.payroll_date=doc.get('overtime_date')
 		as1.total_overtime=total1_hr
 		for d in sc1_row:
 			as1.append('overtime_details',d)
@@ -54,7 +54,7 @@ def execute(doc,method):
 		as2.employee=doc.employee
 		as2.salary_component='OT 2 Amt'
 		as2.amount=amount2
-		as2.payroll_date=datetime.date.today()
+		as2.payroll_date=doc.get('overtime_date')
 		as2.total_overtime=total2_hr
 		for d in sc2_row:
 			as2.append('overtime_details',d)
