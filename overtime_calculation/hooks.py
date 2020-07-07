@@ -30,9 +30,9 @@ app_license = "MIT"
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 doctype_js = {
-				"Overtime":"Public/js/overtime.js",
-				"Overtime Application":"Public/js/overtime_application.js"
-				
+				"Overtime":"public/js/overtime.js",
+				"Overtime Application":"public/js/overtime_application.js"
+
 }
 
 # Home Pages
