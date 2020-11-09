@@ -95,12 +95,11 @@ doc_events = {
 	"Overtime Application": {
 		"on_submit":"overtime_calculation.overtime_calculation.additional_salary.execute"
 	},
+	"Attendance":{
+		"on_submit":"overtime_calculation.overtime_calculation.leave_application.execute"
+	}
 }
-# scheduler_events = {
-# 	"daily": [
-# 		"overtime_calculation.overtime_calculation.additional_salary.execute",
-# 	]
-# }
+
 # Scheduled Tasks
 # ---------------
 
